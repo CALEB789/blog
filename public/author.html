@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{authorName}} - Author Profile - Fame Watch</title>
+    <link rel="stylesheet" href="/css/bootstrap.cleaned.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" >
+    
+    <link rel="stylesheet" href="/css/blog.css">
+    <link rel="stylesheet" href="/../css/glass.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D958BL8HCR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-D958BL8HCR');
+    </script>
+    <style>
+        .author-profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .author-profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: contain;
+            margin-right: 30px;
+            border: 3px solid #eee;
+        }
+        .author-details h1 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        .author-about-me {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .author-social-links a {
+            margin-right: 15px;
+            font-size: 1.8rem;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .author-social-links a:hover {
+            color: red; /* Site's accent color */
+        }
+        .articles-section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" style="display: none">
+  <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.001 0.0002" numOctaves="1" seed="17" result="turbulence"/>
+    <feComponentTransfer in="turbulence" result="mapped">
+      <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+      <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+      <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+    </feComponentTransfer>
+    <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+    <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+      <fePointLight x="-200" y="-200" z="300" />
+    </feSpecularLighting>
+    <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+    <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+    <div class="site-wrapper">
+        <div class="main-overlay"></div>
+        <header class="header-default">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-xl"style='justify-content:space-around'>
+                    <!-- logo  -->
+                    <a href="/" class="navbar-brand">
+                        <img src="../logo.png" alt="famewatch logo" style='width:230px;height:100px'>
+                    </a>
+
+                    <div class="collapse navbar-collapse">
+                       <ul class="navbar-nav mr-auto"style='font-size:16px;font-weight:bold;gap:32px;align-items:center;'>
+                            <style>
+                                .nav-item a {
+                                    color: #333;
+                                    text-decoration: none;
+                                }
+                                .nav-item a:hover {
+                                    color: #ff0000;
+                                }
+                            </style>
+                            <li class="nav-item  ">
+                                <a href="/" class="nav-link ">Home</a>
+                            </li>
+                           <li class="nav-item active ">
+                                        <a href="https://famewatch.ug/category/news" class="" target="_blank">News </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="https://famewatch.ug/category/music" class="">Music</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="https://famewatch.ug/category/movies" class="">Movies </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="https://famewatch.ug/category/lifestyle" class="">Lifestyle </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="https://famewatch.ug/category/interviews" class="">Interviews</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="https://famewatch.ug/category/events" class="">Events</a>
+                                    </li>
+                        </ul>
+                    </div>
+
+                    <!-- right side of header  -->
+                    <div class="header-right">
+                       
+                        <!-- buttons  -->
+                        <div class="header-buttons">
+                            <button class="search icon-button btn2">
+                                <i class="icon-magnifier"></i>
+                            </button>
+                            <button class="burger-menu icon-button btn1">
+                                <span class="burger-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>        </header>
+        <main class="main-content" style="padding-top: 20px;">
+            <div class="container-xl">
+                <div class="author-profile-header">
+                    <img src="{{authorProfilePicUrl}}" alt="{{authorName}} Profile Picture" class="author-profile-pic">
+                    <div class="author-details">
+                        <h1>{{authorName}}</h1>
+                        <div class="author-social-links">
+                            {{authorSocialLinks}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="author-about-me">
+                    <p>{{authorAboutMe}}</p>
+                </div>
+
+                <h2 class="articles-section-title">Articles by {{authorName}}</h2>
+                <div class="row category-content-row"style='flex-direction:row'>
+                    {{authorArticlesList}}
+                </div>
+            </div>
+        </main>
+
+        <!-- Common Footer -->
+        <footer class="site-footer-redesigned">
+            <div class="container-xl">
+                <div class="footer-content-wrapper">
+                    <div class="footer-column about-column">
+                        <h4>About FameWatch UG</h4>
+                        <p>Your daily dose of celebrity news, entertainment, and pop culture from Uganda and East Africa. Stay updated with the latest happenings.</p>
+                    </div>
+                    <div class="footer-column links-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/category/news">News</a></li>
+                            <li><a href="/category/music">Music</a></li>
+                            <li><a href="/category/movies">Movies</a></li>
+                            <li><a href="/category/lifestyle">Lifestyle</a></li>
+                            <li><a href="/category/interviews">Interviews</a></li>
+                            <li><a href="/category/events">Events</a></li>
+                            <li>Privacy Policy</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column social-column">
+                        <h4>Connect With Us</h4>
+                        <div class="footer-social-icons">
+                            <a href="https://www.facebook.com/famewatchug" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/famewatchug" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/famewatchug" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@famewatch.ug" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 FameWatch UG. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div><!-- .site-wrapper -->
+
+    <!-- canvas menu -->
+    <div class="canvas-menu d-flex align-items-end flex-column">
+        <button class="btn-close" aria-label="Close" type="button"></button>
+        <div class="logo"><img src="/logo.png" alt="fame watch logo"></div>
+        <nav>
+            <ul class="vertical-menu">
+                <li class="active">
+                    <a href="/">Home</a>
+                </li>
+            <li><a href="/category/news" class="nav-link">News</a></li>
+                                    <li><a href="/category/music" class="nav-link">Music</a></li>
+                                    <li><a href="/category/movies" class="nav-link">Movies</a></li>
+                                    <li><a href="/category/lifestyle" class="nav-link">Lifestyle</a></li>
+                                    <li><a href="/category/interviews" class="nav-link">Interviews</a></li>
+                                    <li><a href="/category/events" class="nav-link">Events</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- search pop up -->
+    <div class="search-popup">
+        <button class="btn-close" aria-label="Close" type="button"></button>
+        <div class="search-content">
+            <div class="text-center"><h3 class="mb-4 mt-0">Press ESC to close</h3></div>
+            <form action="" class="d-flex search-form">
+                <input type="search" placeholder="Search and press enter ..." aria-label="Search" class="form-control me-2">
+                <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/jquery.min.js" defer></script>
+    <script src="/js/bootstrap.min.js" defer></script>
+    <script src="/js/slick.min.js" defer></script>
+    <script src="/js/jquery.sticky-sidebar.min.js" defer></script>
+    <script src="/main.js" type='module'></script>
+</body>
+</html>

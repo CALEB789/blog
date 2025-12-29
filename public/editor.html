@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script src="https://unpkg.com/cropperjs"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="../css/cropper.css">
+    <link rel="stylesheet" href="../css/bootstrap.cleaned.css">
+<script src="https://cdn.jsdelivr.net/npm/tinymce@7.9.1/tinymce.min.js"></script>
+    <!-- OneSignal SDK -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "6aa69770-87f4-484a-a236-5e6747808c82",
+    });
+  });
+</script>
+
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/editor.css">
+    
+
+</head>
+<body>
+
+    <!-- Responsive Navigation Menu -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-logo">Fame Admin</a>
+        <button class="navbar-toggle" aria-label="Toggle navigation">
+          <span class="navbar-toggle-icon"></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><button class="nav-tab-btn active" data-tab="editor">New Post</button></li>
+                    <li><button class="nav-tab-btn" data-tab="profile">Author Profile</button></li>
+          <li><button class="nav-tab-btn" data-tab="management">Manage Posts</button></li>
+          <li id="user-management-nav-item" style="display: none;"><button class="nav-tab-btn" data-tab="user-management">User Management</button></li>
+          <li style="display: none;" id="adsman"><button class="nav-tab-btn" data-tab="ads-management">Ads Management</button></li>
+          <li><a href="/stats" class="nav-link">Stats</a></li>
+          <li><button class="logout-btn">Logout</button></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="overlay"></div>
+
+    <!-- Editor Tab -->
+    <div class="tab-content" id="editor-tab">
+        <div class="banner">
+            <input type="file" accept="image/*" id="banner-upload" hidden>
+            <label for="banner-upload" class="banner-upload-btn"><img src="img/upload.png" alt="upload banner"></label>
+        </div>
+        
+        <div class="blog">
+            <textarea type="text" class="banner-alt-text" placeholder="Enter banner image alt text..."></textarea>
+            <textarea type="text" class="title" placeholder="Blog title..."></textarea>
+            <textarea type="text" class="description" placeholder="Blog description..."></textarea>
+            <textarea type="text" class="keywords" placeholder="Enter keywords, separated by commas..."></textarea>
+
+            <options class="category">
+                <select class="category-select">
+                    <option value="none" selected disabled hidden>Choose a category</option>
+                    <option value="News">News</option>
+                    <option value="Music">Music</option>
+                    <option value="Movies">Movies</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                    <option value="Interviews">Interviews</option>
+                    <option value="Events">Events</option>
+                </select>
+            </options>
+
+            <options class="headline-select-container">
+                <select class="headline-select">
+                    <option value="none" selected disabled hidden>Is this a headline?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </options>
+
+            <textarea type="text" class="article" id='article' placeholder="Start writing here..."></textarea>
+        </div>
+
+        <div class="blog-options">
+            <button class="btn dark publish-btn"id='publish-btn'>publish</button>
+            <button class="btn dark update-btn" style="display: none;">Update Post</button>
+            <input type="file" accept="image/*" id="image-upload" hidden>
+        </div>
+    </div>
+
+    <!-- Post Management Tab -->
+    <div class="tab-content" id="management-tab" style="display: none;">
+        <div class="post-management">
+            <h2>Manage Posts</h2>
+            <div class="posts-list">
+                <!-- Posts will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+   <div class="tab-content" id="profile-tab" style="display: none;">
+        <div class="author-profile-management" style="padding: 20px;">
+            <h2>Author Profile</h2>
+            <div class="profile-form">
+                <div class="mb-3">
+                    <label for="author-profile-pic" class="form-label">Profile Picture:</label>
+                    <input type="file" id="author-profile-pic" accept="image/*" class="form-control">
+                    <img id="author-profile-pic-preview" src="#" alt="Profile preview" style="max-width: 100px; max-height: 100px; display: none; margin-top: 10px;">
+                </div>
+                <div class="mb-3">
+                    <label for="author-about" class="form-label">About Me:</label>
+                    <textarea id="author-about" class="form-control" rows="5" placeholder="Tell us a little about yourself..."></textarea>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Social Media Handles</h3>
+                
+                <div class="mb-3">
+                    <label for="social-twitter" class="form-label">Twitter URL:</label>
+                    <input type="url" id="social-twitter" class="form-control" placeholder="https://twitter.com/yourhandle">
+                </div>
+
+                <div class="mb-3">
+                    <label for="social-instagram" class="form-label">Instagram URL:</label>
+                    <input type="url" id="social-instagram" class="form-control" placeholder="https://instagram.com/yourhandle">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="social-facebook" class="form-label">Facebook URL:</label>
+                    <input type="url" id="social-facebook" class="form-control" placeholder="https://facebook.com/yourprofile">
+                </div>
+
+                <div class="mb-3">
+                    <label for="social-linkedin" class="form-label">LinkedIn URL:</label>
+                    <input type="url" id="social-linkedin" class="form-control" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+
+                <div class="mb-3">
+                    <label for="social-website" class="form-label">Personal Website URL:</label>
+                    <input type="url" id="social-website" class="form-control" placeholder="https://yourwebsite.com">
+                </div>
+                
+                <button id="save-profile-btn" class="btn btn-primary" style="margin-top: 20px;">Save Profile</button>
+                <p id="profile-status-msg" style="margin-top: 10px; min-height: 1.5em;"></p>
+
+                <div class="name-change-request" style="margin-top: 30px;">
+                    <h4>Request a Name Change</h4>
+                    <p>Your current display name is: <strong id="current-display-name"></strong></p>
+                    <div class="mb-3">
+                        <label for="new-display-name" class="form-label">New Display Name:</label>
+                        <input type="text" id="new-display-name" class="form-control" placeholder="Enter your desired new name">
+                    </div>
+                    <button id="request-name-change-btn" class="btn btn-secondary">Request Change</button>
+                    <p id="name-change-status-msg" style="margin-top: 10px; min-height: 1.5em;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Management Tab -->
+    <div class="tab-content" id="user-management-tab" style="display: none;">
+        <div class="user-management">
+            <h2>User Management</h2>
+            <div class="users-list">
+                <!-- Users will be loaded here dynamically -->
+            </div>
+            <div class="admin-controls" id="admin-user-controls" style="display: none;">
+                <h3>Register New Author</h3>
+                <input type="text" id="new-author-name" placeholder="Author's Full Name" class="form-input">
+                <input type="email" id="new-author-email" placeholder="Author's Email" class="form-input">
+                <input type="password" id="new-author-password" placeholder="Temporary Password" class="form-input">
+                <div>
+                    <label for="new-author-profile-pic">Profile Picture:</label>
+                    <input type="file" id="new-author-profile-pic" accept="image/*" class="form-input">
+                    <img id="profile-pic-preview" src="#" alt="Profile preview" style="max-width: 100px; max-height: 100px; display: none; margin-top: 10px;">
+                </div>
+                <button id="register-author-btn" class="btn dark">Register Author</button>
+
+                <h3 style="margin-top: 30px;">Change User Role</h3>
+                <select id="select-user-for-role-change"></select>
+                <select id="select-new-role">
+                    <option value="author">Author</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button id="change-role-btn">Change Role</button>
+
+                <h3 style="margin-top: 30px;">Name Change Requests</h3>
+                <div id="name-change-requests-list">
+                    <!-- Pending requests will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ads Management Tab -->
+    <div class="tab-content" id="ads-management-tab" style="display: none;">
+        <div class="ads-management" style="padding: 20px;">
+            <h2>Ads Management</h2>
+
+            <div class="ad-upload-form-container" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 5px;">
+                <h4>Upload New Ad</h4>
+                <form id="ad-upload-form">
+                    <div class="mb-3">
+                        <label for="ad-name" class="form-label">Ad Name/Identifier:</label>
+                        <input type="text" id="ad-name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ad-target-url" class="form-label">Target URL (e.g., https://advertiser.com/product):</label>
+                        <input type="url" id="ad-target-url" class="form-control" placeholder="https://example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ad-creative-upload" class="form-label">Ad Creative (Image):</label>
+                        <input type="file" id="ad-creative-upload" class="form-control" accept="image/*" required>
+                    </div>
+                    <button type="submit" id="upload-ad-btn" class="btn btn-primary">Upload Ad</button>
+                </form>
+            </div>
+
+            <div id="ads-list-section">
+                <h4>Uploaded Ads</h4>
+                <div id="ads-list" class="list-group">
+                    <!-- Ads will be listed here dynamically -->
+                    <!-- Example Ad Item Structure (for reference):
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-2"><img src="path/to/ad-thumbnail.jpg" alt="Ad Thumbnail" style="width: 100px; height: auto;"></div>
+                            <div class="col-md-4">
+                                <strong>Name:</strong> Ad Example 1 <br>
+                                <strong>Target URL:</strong> <a href="https://example.com" target="_blank">https://example.com</a>
+                            </div>
+                            <div class="col-md-2"><strong>Views:</strong> 1234</div>
+                            <div class="col-md-4"><button class="btn btn-sm btn-danger delete-ad-btn" data-ad-id="firestore-doc-id">Delete</button></div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+  <div id="cropper-modal" class="cropper-modal">
+        <div class="cropper-content">
+            <div class="cropper-container">
+                <img id="cropper-image" src="">
+            </div>
+            <div class="cropper-actions">
+                <button id="crop-btn" class="btn dark">Crop</button>
+                <button id="cancel-crop-btn" class="btn dark">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/editor.js" type='module'></script>
+</body>
+</html>

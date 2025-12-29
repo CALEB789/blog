@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{title}} | Fame Watch</title>
+    <link rel ="icon" href="../img/favicon.png">
+    <meta name="author" content="{{authorName}}">
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="description" content="{{metaDescription}}">
+    {{schemaGraph}}
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "6aa69770-87f4-484a-a236-5e6747808c82",
+    });
+  });
+</script>
+    <style>
+    .article ul, .article ol, .article li{margin:0}
+    img{width:100%;height: 100%;max-width: 600px;} .image-wrapper{height: 100%;} .image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
+      <meta property="og:title" content="{{metaOgTitle}}">
+      <link rel="canonical">
+  <meta property="og:description" content="{{metaOgDesc}}">
+  <meta property="og:image" content="{{metaOgImage}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{metaOgUrl}}">
+    <link rel="stylesheet" href="css/blog.css">
+    
+   
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D958BL8HCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D958BL8HCR');
+</script>
+</head>
+<body data-barba="wrapper">
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" style="display: none">
+  <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.001 0.0002" numOctaves="1" seed="17" result="turbulence"/>
+    <feComponentTransfer in="turbulence" result="mapped">
+      <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+      <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+      <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+    </feComponentTransfer>
+    <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+    <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+      <fePointLight x="-200" y="-200" z="300" />
+    </feSpecularLighting>
+    <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+    <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+  <div class="load-container">
+        <div class="loader">
+        </div>
+    </div>
+    <style>
+      .category{
+        border: 2px solid white;
+    width: 80px;
+    padding: 3px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+      }
+     .wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 2px;
+    background: black;
+    color: white;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  align-items: center;
+  gap:6px;
+}
+iframe{
+    
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+@media (max-width: 1120px) {
+    .wrapper {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 700px;
+    }
+    .info{
+        display: flex;
+
+        margin-left: 0px;
+        text-align: center;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    
+    }
+    .pub{
+           
+    bottom:112px;
+    }
+  
+    .banner{
+        width: 50%;
+        height: 300px;
+    }
+ 
+}
+      .banner{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    min-width: 268px;
+    max-width: 560px;
+   
+
+}
+.image-credit{
+    margin: 0;
+}
+.image-container img{
+    margin: 15px;
+}
+.pub{
+ display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.3rem;
+}
+.social-icons-blog {
+  
+    display: flex;
+    position: relative;
+    gap: 15px; /* Space between icons */
+    margin-top: 15px; /* Space above the icons */
+    justify-content: flex-start; /* Center icons if they wrap or are in a smaller container */
+}
+
+.social-icons-blog a {
+    color: white; /* Icon color */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s ease;
+}
+
+.social-icons-blog a:hover {
+    color: #ddd; /* Icon color on hover */
+}
+svg{
+    width: 25px;
+    height: 25px;
+}
+/* Responsive adjustments for social icons if needed */
+@media (max-width: 1120px) {
+    .info {
+        align-items: center;
+        margin-top: 15px;
+    }
+    .social-icons-blog {
+        justify-content: center; 
+    }
+}
+    </style>
+<main data-barba="container" data-barba-namespace="blog-section">
+    <style>
+        nav {
+	 position: relative;
+	 padding: 1.5rem;
+	 border-radius: 100vmax;
+	 isolation: isolate;
+	 color: #000;
+	 font-size: 1.25rem;
+	 width: 100%;
+}
+
+    </style>
+<nav class="navbar"style='backdrop-filter: blur(3px);'>
+        <a href = '/'>
+           <img src="../logo.png" class="logo" alt="famewatch logo"style='width:150px'fetchpriority='high'>
+        </a>
+        
+        <ul class="links-container">
+            <li class="link-item"><a href="/" class="link">home</a></li>
+        </ul>
+    </nav>
+    
+    
+    <div class="wrapper">
+    <div class="banner" id='banner'>
+        <div class="image-wrapper">
+            <img src='{{bannerImage}}' id='img'
+                 fetchpriority='high' alt="{{bannerAlt}}">
+        </div>
+    </div>
+    <div class="info">
+        <div class="category">{{category}}</div>
+        <div class="headline"><h2>{{artticlesTitle}}</h2></div>
+        <div class="author-section pub">
+            
+            <p class="published" style="margin:0;"> <span id="author-name-placeholder">{{author}}</span> · <span>{{publishedAt}}</span></p>
+        </div>
+        <div class="social-icons-blog">
+            <a href="#" id="facebook-share" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256"><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,3c-12.15,0 -22,9.85 -22,22c0,11.03 8.125,20.137 18.712,21.728v-15.897h-5.443v-5.783h5.443v-3.848c0,-6.371 3.104,-9.168 8.399,-9.168c2.536,0 3.877,0.188 4.512,0.274v5.048h-3.612c-2.248,0 -3.033,2.131 -3.033,4.533v3.161h6.588l-0.894,5.783h-5.694v15.944c10.738,-1.457 19.022,-10.638 19.022,-21.775c0,-12.15 -9.85,-22 -22,-22z"></path></g></g></svg></a>
+            <a href="#" id="x-share" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="bi bi-twitter-x" viewBox="0 0 16 16" id="Twitter-X--Streamline-Bootstrap" height="16" width="16">
+  <path d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" stroke-width="1"></path>
+</svg></a>
+            <a href="#" id="whatsapp-share" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256">
+<g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,2c-12.682,0 -23,10.318 -23,23c0,3.96 1.023,7.854 2.963,11.29l-2.926,10.44c-0.096,0.343 -0.003,0.711 0.245,0.966c0.191,0.197 0.451,0.304 0.718,0.304c0.08,0 0.161,-0.01 0.24,-0.029l10.896,-2.699c3.327,1.786 7.074,2.728 10.864,2.728c12.682,0 23,-10.318 23,-23c0,-12.682 -10.318,-23 -23,-23zM36.57,33.116c-0.492,1.362 -2.852,2.605 -3.986,2.772c-1.018,0.149 -2.306,0.213 -3.72,-0.231c-0.857,-0.27 -1.957,-0.628 -3.366,-1.229c-5.923,-2.526 -9.791,-8.415 -10.087,-8.804c-0.295,-0.389 -2.411,-3.161 -2.411,-6.03c0,-2.869 1.525,-4.28 2.067,-4.864c0.542,-0.584 1.181,-0.73 1.575,-0.73c0.394,0 0.787,0.005 1.132,0.021c0.363,0.018 0.85,-0.137 1.329,1.001c0.492,1.168 1.673,4.037 1.819,4.33c0.148,0.292 0.246,0.633 0.05,1.022c-0.196,0.389 -0.294,0.632 -0.59,0.973c-0.296,0.341 -0.62,0.76 -0.886,1.022c-0.296,0.291 -0.603,0.606 -0.259,1.19c0.344,0.584 1.529,2.493 3.285,4.039c2.255,1.986 4.158,2.602 4.748,2.894c0.59,0.292 0.935,0.243 1.279,-0.146c0.344,-0.39 1.476,-1.703 1.869,-2.286c0.393,-0.583 0.787,-0.487 1.329,-0.292c0.542,0.194 3.445,1.604 4.035,1.896c0.59,0.292 0.984,0.438 1.132,0.681c0.148,0.242 0.148,1.41 -0.344,2.771z"></path></g></g>
+</svg></a>
+        </div>
+    </div>
+    </div>
+
+    <div class="blog">
+        <div class="article">
+            {{articleContent}}
+        </div>
+    </div>
+  <section class="author-info-section" id="blog-author-info-container" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee;">
+        <div class="container-xl" style="max-width: 800px; margin: 0 auto;">
+            {{authorInfoBlock}}
+        </div>
+    </section>
+    <h1 class="sub-heading"><b>Read more</b></h1>
+
+    <!-- blog section -->
+    <section class="blogs-section">
+       {{relatedBlogs}}
+    </section>
+
+    <footer class="site-footer-redesigned">
+        <div class="container-xl">
+            <div class="footer-content-wrapper">
+                <div class="footer-column about-column">
+                    <h3>About FameWatch UG</h3>
+                    <p>Your daily dose of celebrity news, entertainment, and pop culture from Uganda and East Africa. Stay updated with the latest happenings.</p>
+                </div>
+                <div class="footer-column links-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/category/news">News</a></li>
+                        <li><a href="/category/music">Music</a></li>
+                        <li><a href="/category/movies">Movies</a></li>
+                        <li><a href="/category/lifestyle">Lifestyle</a></li>
+                                 <li><a href="/category/interviews">Interviews</a></li>
+                        <li><a href='/category/events'>Events</a></li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                <div class="footer-column social-column">
+                    <h4>Connect With Us</h4>
+                    <div class="footer-social-icons">
+                        <a href="https://www.facebook.com/famewatchug" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256"><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,3c-12.15,0 -22,9.85 -22,22c0,11.03 8.125,20.137 18.712,21.728v-15.897h-5.443v-5.783h5.443v-3.848c0,-6.371 3.104,-9.168 8.399,-9.168c2.536,0 3.877,0.188 4.512,0.274v5.048h-3.612c-2.248,0 -3.033,2.131 -3.033,4.533v3.161h6.588l-0.894,5.783h-5.694v15.944c10.738,-1.457 19.022,-10.638 19.022,-21.775c0,-12.15 -9.85,-22 -22,-22z"></path></g></g></svg></a>
+                        <a href="https://x.com/famewatchug" target="_blank" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" class="bi bi-twitter-x" viewBox="0 0 16 16" id="Twitter-X--Streamline-Bootstrap" height="16" width="16">
+  <path d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" stroke-width="1"></path>
+</svg></a>
+                        <a href="https://www.instagram.com/famewatchug" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Instagram--Streamline-Core" height="14" width="14">
+  <g id="instagram">
+    <g id="Group 4546">
+      <path id="Vector" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M10.3332 3.64404c-0.1381 0 -0.25 -0.11193 -0.25 -0.25s0.1119 -0.25 0.25 -0.25" stroke-width="1"></path>
+      <path id="Vector_2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M10.3332 3.64404c0.1381 0 0.25 -0.11193 0.25 -0.25s-0.1119 -0.25 -0.25 -0.25" stroke-width="1"></path>
+    </g>
+    <path id="Rectangle 2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M0.858276 3.43141c0 -1.42103 1.151974 -2.573012 2.573014 -2.573012h6.86141c1.421 0 2.573 1.151982 2.573 2.573012v6.86139c0 1.421 -1.152 2.573 -2.573 2.573H3.43129c-1.42104 0 -2.573014 -1.152 -2.573014 -2.573V3.43141Z" stroke-width="1"></path>
+    <path id="Ellipse 11" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M4.312 6.862a2.55 2.55 0 1 0 5.1 0 2.55 2.55 0 1 0 -5.1 0" stroke-width="1"></path>
+  </g>
+</svg></a>
+                        <a href="https://www.tiktok.com/@famewatch.ug" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FameWatch UG. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href;
+            const pageTitle = document.title;
+
+            // Facebook
+            const facebookShare = document.getElementById('facebook-share');
+            if (facebookShare) {
+                facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            }
+
+            // X.com (Twitter)
+            const xShare = document.getElementById('x-share');
+            if (xShare) {
+                xShare.href = `https://x.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`;
+            }
+
+            // WhatsApp
+            const whatsappShare = document.getElementById('whatsapp-share');
+            if (whatsappShare) {
+                let whatsappText = '';
+                const ogDescMeta = document.querySelector('meta[property="og:description"]');
+                if (ogDescMeta && ogDescMeta.content) {
+                    whatsappText = ogDescMeta.content;
+                } else {
+                    whatsappText = pageTitle; // Fallback to page title
+                }
+                whatsappShare.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText + " " + currentUrl)}`;
+            }
+           
+        });
+    </script>
+<script>
+  // removes empty <p> elements inside any .image-container
+  function removeEmptyPTagsInImageContainers() {
+    document.querySelectorAll('.article').forEach(container => {
+      // collect ps first to avoid live-node issues
+      Array.from(container.querySelectorAll('p')).forEach(p => {
+        const textOnly = p.textContent.replace(/\u00A0/g, '').trim().length === 0;
+        const hasMedia = !!p.querySelector('img, picture, iframe, video, svg');
+        const onlyBreaks = p.innerHTML.replace(/\s|&nbsp;/g, '') === '' || /^(\s*<br\s*\/?>\s*)+$/i.test(p.innerHTML);
+        if (textOnly && !hasMedia && onlyBreaks) p.remove();
+      });
+    });
+  }
+
+  // run on load and expose for calling before upload/publish
+  document.addEventListener('DOMContentLoaded', removeEmptyPTagsInImageContainers);
+  window.removeEmptyPTagsInImageContainers = removeEmptyPTagsInImageContainers;
+</script>
+</body>
+</html>

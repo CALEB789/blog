@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+@font-face {
+  font-family: 'PP Neue Corp Tight';
+  src: url('https://cdn.prod.website-files.com/673af51dea86ab95d124c3ee/673b0f5784f7060c0ac05534_PPNeueCorp-TightUltrabold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.container {
+  z-index: 1;
+  max-width: var(--size-container);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.website-link {
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+}
+
+.website-link.is--alt {
+  grid-column-gap: .25em;
+  grid-row-gap: .25em;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1.5em;
+  display: flex;
+}
+
+.inline-link__p {
+  margin-bottom: 0;
+}
+p{
+  margin: 0px
+}
+
+.cloneable {
+  padding: var(--section-padding) var(--container-padding);
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  display: flex;
+  position: relative;
+  --menu-padding: 2em;
+}
+
+.nav {
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: fixed;
+  inset: 0%;
+}
+
+.overlay {
+  z-index: 0;
+  cursor: pointer;
+  background-color: #13131366;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+}
+
+.menu {
+  padding-bottom: var(--menu-padding);
+  grid-column-gap: 5em;
+  grid-row-gap: 5em;
+  padding-top: calc(3 * var(--menu-padding));
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 35em;
+  height: 100%;
+  margin-left: auto;
+  position: relative;
+  overflow: auto;
+}
+
+.menu-bg {
+  z-index: 0;
+  position: absolute;
+  inset: 0%;
+}
+
+.menu-inner {
+  z-index: 1;
+  grid-column-gap: 5em;
+  grid-row-gap: 5em;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow: auto;
+}
+
+.bg-panel {
+  z-index: 0;
+  background-color: var(--color-neutral-300);
+  border-top-left-radius: 1.25em;
+  border-bottom-left-radius: 1.25em;
+  position: absolute;
+  inset: 0%;
+}
+
+.bg-panel.first {
+  background-color: red;
+}
+
+.bg-panel.second {
+  background-color: var(--color-neutral-100);
+}
+
+.menu-list {
+  flex-flow: column;
+  width: 100%;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+}
+
+.menu-list-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-link-heading{ text-shadow: 0px 1em 0px var(--color-neutral-200); }
+
+.menu-link {
+  padding-top: .75em;
+  padding-bottom: .75em;
+  padding-left: var(--menu-padding);
+  grid-column-gap: .75em;
+  grid-row-gap: .75em;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+}
+
+.menu-link-heading {
+  z-index: 1;
+  text-transform: uppercase;
+  font-family: PP Neue Corp Tight, Arial, sans-serif;
+  font-size: 5.625em;
+  font-weight: 700;
+  line-height: .75;
+  transition: transform .55s cubic-bezier(.65, .05, 0, 1);
+  position: relative;
+}
+
+.eyebrow {
+  z-index: 1;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+}
+
+.menu-link-bg {
+  z-index: 0;
+  background-color: white;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.65, .05, 0, 1);
+  position: absolute;
+  inset: 0%;
+  transform: scale3d(1, 0, 1);
+}
+
+.menu-details {
+  padding-left: var(--menu-padding);
+  grid-column-gap: 1.25em;
+  grid-row-gap: 1.25em;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.text-link {
+  text-decoration: none;
+  position: relative;
+}
+
+.menu-button {
+  grid-column-gap: .625em;
+  grid-row-gap: .625em;
+  background-color: #0000;
+  justify-content: flex-end;
+  align-items: center;
+  margin: -1em;
+  padding: 1em;
+  display: flex;
+  border: none;
+}
+
+.menu-button-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.menu-button-text {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 1.125em;
+  display: flex;
+  overflow: hidden;
+}
+
+.icon-wrap {
+  transition: transform .4s cubic-bezier(.65, .05, 0, 1);
+}
+
+@media (hover:hover){
+  
+   /* Menu toggle button*/
+  .menu-button:hover .icon-wrap{transform: rotate(90deg); }
+
+  /* Menu Large Links */
+  .menu-link:hover .menu-link-heading{ transform: translate(0px, -1em); transition-delay: 0.1s; }
+  .menu-link:hover .menu-link-bg{ transform: scale(1,1) }
+
+  /* Menu Smaller Links */
+  .text-link::after{
+    content: '';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    height:1px;
+    background: var(--color-primary);
+    transform-origin: right center;
+    transform: scale(0,1);
+    transition: transform 0.4s var(--cubic-default)
+  }
+
+  .text-link:hover::after{
+    transform-origin: left center;
+    transform: scale(1,1);	
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+  .cloneable{
+  	--menu-padding: 1em;
+  }
+  
+
+  .cloneable-title {
+    pointer-events: none;
+    width: calc(100% - 5.25em);
+    padding-left: 1em;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .cloneable-title__nr, .cloneable-title__h1 {
+    font-size: .875em;
+  }
+
+  .clone-in-webflow {
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 0;
+    padding-left: .75em;
+  }
+
+  .clone-in-webflow__p {
+    display: none;
+  }
+
+  .cloneable-title__gradient, .osmo-ui__bg {
+    display: block;
+  }
+
+  .menu {
+    padding-top: calc(6 * var(--menu-padding));
+    width: 100%;
+  }
+
+  .bg-panel {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .menu-list-item {
+    height: 4.5em;
+  }
+
+  .menu-link-heading {
+    font-size: 4em;
+  }
+  .p-large.text-link {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .menu {
+    padding-top: calc(7 * var(--menu-padding));
+    padding-bottom: calc(2 * var(--menu-padding));
+  }
+}
+         body {
+    font-family: sans-serif;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+
+    .smooth-scroll {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+ 
+    overflow-x:hidden;
+    }
+
+    .carousel {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+    scroll-snap-align: start;
+    }
+
+    .carousel-item {
+    position: relative;
+    flex: 0 0 100%; /* Each item takes full height */
+    height: 75%; /* Full viewport height */
+    margin-right: 20px; /* Adjust as needed */
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    }
+    .carousel-item::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index:1;
+        background: linear-gradient(0deg, rgba(0, 0, 0, .9), transparent 50%);
+        mix-blend-mode:darken; /* Semi-transparent overlay */
+    }
+    span{
+        z-index: 2;
+    }
+
+    .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    }
+
+    .carousel-item-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    color: white;
+    }
+    @media (max-width: 768px) {
+        .carousel{
+            width:100%;
+        }
+    }
+    .carousel-item h2 {
+        position: absolute;
+        bottom:22px;
+color:white;
+        z-index:2;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+    }
+
+    .carousel-item p {
+        z-index: 2;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 20px;
+    }
+
+    .carousel-item .author {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    }
+
+    .carousel-item .date {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    }
+    .image-wrapper{
+        height:100%;
+    }
+
+    .debug-section {
+    height: 200px;
+    background-color: lightgray;
+    text-align: center;
+    padding: 50px;
+    }
+        @media (max-width: 405px) {
+    .btn1 {
+        position: relative;
+        left: 85%;
+        bottom:65px;
+    }
+    .btn2{
+        position: relative;
+        right:160%;
+        bottom: 65px;
+    }
+    .navbar{
+        height:104px;
+    }
+}
+
+    </style>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "6aa69770-87f4-484a-a236-5e6747808c82",
+    });
+  });
+</script>
+<link rel ="icon" href="../img/favicon.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FameWatch UG - Your source for the latest celebrity news, entertainment gossip, and pop culture updates from Uganda and East Africa.">
+    <meta name="keywords" content="FameWatch, celebrity news, entertainment, gossip, Uganda, East Africa">
+    <title>Fame Watch</title>
+    <link rel = 'preconnect' href='../css/bootstrap.cleaned.css'>
+    <link rel="stylesheet" href="../css/bootstrap.cleaned.css">
+    <link rel='preconnect' href='../style.css'>
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D958BL8HCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D958BL8HCR');
+</script>
+<style>
+    .sidebar-ad-widget .widget-content {
+        padding: 0; /* Remove padding if the ad image should fill the widget */
+    }
+    .sidebar-ad-image {
+        display: block; /* Remove extra space below image */
+        max-width: 100%;
+        height: auto;
+        border-radius: inherit; /* Inherit border-radius from parent widget if any */
+    }
+    .sidebar-ad-link {
+        display: block;
+    }
+</style>
+</head>
+
+<body data-barba="wrapper" >
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" style="display: none">
+  <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.001 0.0002" numOctaves="1" seed="17" result="turbulence"/>
+    <feComponentTransfer in="turbulence" result="mapped">
+      <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+      <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+      <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+    </feComponentTransfer>
+    <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+    <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+      <fePointLight x="-200" y="-200" z="300" />
+    </feSpecularLighting>
+    <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+    <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+    <div class="load-container">
+        <div class="loader">
+        </div>
+    </div>
+    <main data-barba="container" data-barba-namespace="home-section">
+    <div class="site-wrapper">
+        <div class="main-overlay"></div>
+        <header class="header-default">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-xl"style='justify-content:space-around'>
+                    <!-- logo  -->
+                    <a href="/" class="navbar-brand"aria-label="famewatch logo">
+                        <img src="../logo.png" alt="famewatch logo">
+                    </a>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav mr-auto"style='font-size:16px;font-weight:bold;gap:32px;align-items:center;'>
+                            <style>
+                                .nav-item a {
+                                    color: #333;
+                                    text-decoration: none;
+                                }
+                                .nav-item a:hover {
+                                    color: #ff0000;
+                                }
+                            </style>
+                            <li class="nav-item  active">
+                                <a href="/" class="nav-link "aria-label='home'>Home</a>
+                            </li>
+                           <li class="nav-item ">
+                                        <a href="category/news" class="" aria-label="news">News </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="category/music" class=""aria-label='music'>Music</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="category/movies" class=""aria-label='Movies'>Movies </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="category/lifestyle" class=""aria-label='Lifestyle'>Lifestyle </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="category/interviews" class=""aria-label='interviews'>Interviews</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="category/events" class=""aria-label='Events'>Events</a>
+                                    </li>
+                        </ul>
+                    </div>
+
+                    <!-- right side of header  -->
+                    <div class="header-right">
+                       
+                        <!-- buttons  -->
+                        <div class="header-buttons">
+                            <button class="search icon-button btn2"aria-label="search button">
+                                <i class="icon-magnifier"></i>
+                            </button>
+                            <button class="burger-menu icon-button btn1"aria-label="burger menu button">
+                                <span class="burger-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>        </header>
+
+        <script>
+            // Sticky navbar functionality
+            const header = document.querySelector('.header-default');
+            let lastScrollTop = 0;            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollDelta = scrollTop - lastScrollTop;
+                
+                // When scrolling down more than 50px
+                if (scrollDelta > 50) {
+                    header.classList.add('sticky', 'hide');
+                } 
+                // When scrolling up
+                else if (scrollDelta < -10) {
+                    header.classList.remove('hide');
+                }
+                // When near the top
+                else if (scrollTop < 50) {
+                    header.classList.remove('sticky', 'hide');
+                }
+                
+                lastScrollTop = Math.max(scrollTop, 0);
+            });
+        </script>
+
+        <!-- section starts  -->
+        <section id="hero">
+            <div class="container-xl">
+                <div class="row gy-4">
+                    <div class="col-lg-8">
+
+                        <div class="post featured-post-lg">
+                            <div class="details clearfix">
+                                <a href="#" class="category-badge" data-category=""aria-label='category'>{{headcategory}} </a>
+                                <h2 class="post-title x"id='x'>
+                                    <a href="/{{headlink}}" class='featured-title' aria-label="featured title">{{headtitles}}</a>
+                                </h2>
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="#"style=''aria-label='author Name'>{{headauthorName}}</a>
+                                    </li>
+                                    <li class="list-inline-item"id='headdate'aria-label='Date'>{{headdate}}</li>
+                                </ul>
+                            </div>
+                            <a href="#"aria-label='headline Image'>
+                                <div class="thumb rounded">
+                                    <div class="inner data-bg-image" data-bg-image="" id="headimage" style="background-image: url({{headimages}});">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 headlines"id='headlines'>
+                        <div class="post-tabs rounded bordered">
+
+                            <div class="tab-content" id="postsTabContent">
+                                <div class="lds-dual-ring"></div>
+                                <div class="tab-pane fade show active" id="headlines-content" aria-labelledby="headlines-tab"
+                                    role="tabpanel">
+                                    {{HEADLINES_CONTENT}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- main content  -->
+
+        <section class="main-content">
+            <div class="container-xl">
+                <div class="row gy-4">
+
+                    <!-- left part 1st section  -->
+                    <div class="col-lg-8"style=' text-overflow:ellipsis'>
+                        
+
+                        <div class="spacer" data-height="50"></div>
+<div class="trending"id='trending'>
+    <div class="section-header">
+       
+        <h3 class="section-title">Trending</h3>
+    </div>
+    <div class="padding-30 rounded bordered ttd"style='text-overflow:ellipsis'>
+        <div class="row gy-5">
+            {{TRENDING_CONTENT}}
+            
+        </div>
+    </div>
+</div>
+                        
+                        
+                        <div class="spacer" data-height="50"></div>
+
+
+
+                        <div class="spacer" data-height="50"></div>
+<div class="latest"id='latest'>
+    <div class="section-header">
+        <h3 class="section-title">Latest Posts</h3>
+    </div>
+    <div class="padding-30 rounded bordered">
+    <div class="smooth-scroll">
+    <div class="carousel">
+        {{LATEST_CONTENT}}
+    </div>
+    </div>
+    </div>
+
+    
+    </div>
+
+                       
+                        <!-- News Section -->
+                        <div class="news">
+                            <div class="section-header">
+                                <h3 class="section-title">News</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row news-section">
+                                    {{newsSection}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Music Section -->
+                        <div class="music">
+                            <div class="section-header">
+                            
+                                <h3 class="section-title">Music</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row music-section">
+                                    {{musicSection}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Movies Section -->
+                        <div class="movies">
+                            <div class="section-header">
+                                <h3 class="section-title">Movies</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row movies-section">
+                                    {{moviesSection}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lifestyle Section -->
+                        <div class="lifestyle">
+                            <div class="section-header">
+                                
+                                <h3 class="section-title">Lifestyle</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row lifestyle-section">
+                                    {{lifestyleSection}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interviews Section -->
+                        <div class="interviews">  
+                            <div class="section-header">
+                                
+                                <h3 class="section-title">Interviews</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row interviews-section">
+                                    {{interviewsSection}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Events Section -->
+                        <div class="events">
+                            <div class="section-header">
+                                
+                                <h3 class="section-title">Events</h3>
+                            </div>
+                            <div class="padding-30 rounded bordered">
+                                <div class="row events-section">
+                                    {{eventsSection}}
+                                </div>
+                            </div>
+                        </div>
+                    
+                                            </div>
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <!-- Ads will be injected here by server.js -->
+                            {{SIDEBAR_ADS_CONTENT}}
+                         
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+<footer class="site-footer-redesigned">
+        <div class="container-xl">
+            <div class="footer-content-wrapper">
+                <div class="footer-column about-column">
+                    <h4>About FameWatch UG</h4>
+                    <p>Your daily dose of celebrity news, entertainment, and pop culture from Uganda and East Africa. Stay updated with the latest happenings.</p>
+                </div>
+                <div class="footer-column links-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/" aria-label="home">Home</a></li>
+                        <li><a href="/category/news"aria-label='news'>News</a></li>
+                        <li><a href="/category/music"aria-label='music'>Music</a></li>
+                        <li><a href="/category/movies"aria-label='movies'>Movies</a></li>
+                        <li><a href="/category/lifestyle"aria-label='Lifestyle'>Lifestyle</a></li>
+                                 <li><a href="/category/interviews"aria-label='Interviews'>Interviews</a></li>
+                        <li><a href='/category/events'aria-label='Events'>Events</a></li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                <div class="footer-column social-column">
+                    <h4>Connect With Us</h4>
+                    <div class="footer-social-icons">
+                        <a href="https://www.facebook.com/famewatchug" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/famewatchug" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/famewatchug" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@famewatch.ug" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FameWatch UG. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    </div>
+
+
+    <!-- canvas menu  -->
+<div class="canvas-menu d-flex align-items-end flex-column " >
+        <button class="btn-close" aria-label="Close" type="button"></button>
+
+        <div class="logo">
+            <img src="../logo.png" alt="fame watch logo">
+        </div>
+        <nav>
+            <ul class="vertical-menu">
+                <li class="active">
+                    <a href="/">Home</a>
+                </li>
+                <li><a href="/category/news"aria-label='News'>News</a></li>
+                        <li><a href="/category/music"aria-label='Music'>Music</a></li>
+                        <li><a href="/category/movies"aria-label='Movies'>Movies </a></li>
+                        <li><a href="/category/lifestyle"aria-label='Lifestyle'>Lifestyle </a></li>
+                        <li><a href="/category/interviews"aria-label='Interviews'>Interviews</a></li>
+                        <li><a href="/category/events"aria-label='Events'>Events</a></li>
+            </ul>
+        </nav>
+
+
+       
+    </div>
+    <!-- search pop up  -->
+    <div class="search-popup">
+        <button class="btn-close" aria-label="Close" type="button"></button>
+
+        <div class="search-content">
+            <div class="text-center">
+                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            </div>
+
+            <form action="" class="d-flex search-form">
+                <input type="search" placeholder="Search and press enter ..." aria-label="Search"
+                    class="form-control me-2">
+                <button class="btn btn-default btn-lg" type="submit"aria-label="submit search">
+                    <i class="icon-magnifier"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</main>
+    <!-- javascripts  -->
+   <script src="js/jquery.min.js"defer></script>
+    <script src="js/jquery.sticky-sidebar.min.js"defer></script>
+    <script src="main.js"type='module'></script>
+    <script>
+    gsap.registerPlugin(ScrollTrigger);const carousel=document.querySelector(".carousel"),items=document.querySelectorAll(".carousel-item"),totalWidth=(items.length-1)*100;function initMenu(){let e=document.querySelector(".nav"),t=e.getAttribute("data-nav"),r=e.querySelector(".overlay"),a=e.querySelector(".menu"),o=e.querySelectorAll(".bg-panel"),n=document.querySelectorAll("[data-menu-toggle]"),l=e.querySelectorAll(".menu-link"),i=e.querySelectorAll("[data-menu-fade]"),c=gsap.timeline(),s=()=>{e.setAttribute("data-nav","open"),c.clear().set(e,{display:"block"}).set(a,{xPercent:0},"<").fromTo(menuButtonTexts,{yPercent:0},{yPercent:-100,stagger:.2}).fromTo(menuButtonIcon,{rotate:0},{rotate:315},"<").fromTo(r,{autoAlpha:0},{autoAlpha:1},"<").fromTo(o,{xPercent:101},{xPercent:0,stagger:.12,duration:.575},"<").fromTo(l,{yPercent:140,rotate:10},{yPercent:0,rotate:0,stagger:.05},"<+=0.35").fromTo(i,{autoAlpha:0,yPercent:50},{autoAlpha:1,yPercent:0,stagger:.04},"<+=0.2")},u=()=>{e.setAttribute("data-nav","closed"),c.clear().to(r,{autoAlpha:0}).to(a,{xPercent:120},"<").to(menuButtonTexts,{yPercent:0},"<").to(menuButtonIcon,{rotate:0},"<").set(e,{display:"none"})};n.forEach(r=>{r.addEventListener("click",()=>{"open"===(t=e.getAttribute("data-nav"))?u():s()})}),document.addEventListener("keydown",t=>{"Escape"===t.key&&"open"===e.getAttribute("data-nav")&&u()})}gsap.to(carousel,{x:()=>`-${totalWidth}%`,ease:"power1.inOut",duration:1,scrollTrigger:{trigger:".latest",start:"center center",end:()=>`+=${1.5*totalWidth}%`,pin:!0,anticipatePin:1,scrub:1,snap:{snapTo:1/(items.length-1),duration:{min:.2,max:.5},delay:.1,ease:"power1.inOut"},onUpdate(e){e.progress>=1&&e.animation.progress(1)}}}),gsap.set(".nav",{display:"none"}),document.addEventListener("DOMContentLoaded",()=>{initMenu()});
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded",function(){let e=document.querySelectorAll(".sidebar-ad-link[data-ad-id]");e.forEach(e=>{let a=e.dataset.adId,t=e.querySelector("img.sidebar-ad-image"),n=t?t.alt:"Unknown Ad",d=t?t.src:"Unknown Creative";"function"==typeof gtag?(gtag("event","ad_view",{ad_id:a,ad_name:n,creative_url:d,page_location:window.location.pathname,event_category:"Advertisement",event_label:`Ad ID: ${a} - ${n}`}),console.log(`GA Event: ad_view - ID: ${a}, Name: ${n}`)):console.warn("gtag function not found. Ad view not tracked for ad ID:",a)})});</script>
+
+</body>
+
+</html>
