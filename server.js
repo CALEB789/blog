@@ -803,7 +803,7 @@ app.post('/api/send-notification', async (req, res) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'ojo4eh6ryfuot5fi' // Replace with your OneSignal REST API key
+                'Authorization': '' // Replace with your OneSignal REST API key
             },
             body: JSON.stringify({
                 app_id: '2',
